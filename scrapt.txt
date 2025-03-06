@@ -1,0 +1,50 @@
+window.onload = function(){ createCard(mainDish); } // the onload function is
+used to load the cards when the page is loaded, in this case, the mainDish array
+is loaded to 3 // cards for three seperate categories of recipies: Entree, Side,
+and Vegetable. function createCard(recipeList){ for(let i =0; i <
+recipeList.length; i++){ const newCard = document.createElement('div');
+newCard.classList.add('card'); var item = recipeList[i].title newCard.innerHTML
+= `
+<h2 id="cardTitle1">${recipeList[i].title}</h2>
+<img
+	src="${recipeList[i].imageSrc}"
+	alt="Recipe Image 1" />
+<p class="textInformation showText ingredients">
+	${recipeList[i].ingredients.map(ingredient => `${ingredient.amount} :
+	${ingredient.ingredient}<br />`).join('')}
+</p>
+<div class="bottomBar">
+	<i
+		class="material-symbols-outlined ingredients"
+		onclick="showRecipeSection('ingredients', ${i})"
+		>Checklist</i
+	>
+	<i
+		class="material-symbols-outlined instructions"
+		onclick="showRecipeSection('instructions', ${i})"
+		>Turn_Right</i
+	>
+	<i
+		class="material-symbols-outlined servinginfo"
+		onclick="showRecipeSection('servingInfo', ${i})"
+		>Timer</i
+	>
+</div>
+<div class="cardIcon">
+	<i
+		class="rollCard material-symbols-outlined"
+		onclick="randomRecipe('${item}', ${i})"
+		>deployed_code</i
+	>
+	<i
+		class="lockCard material-symbols-outlined"
+		onclick="lockCard(${i}, recipes)"
+		>Lock</i
+	>
+	<i
+		class="loveCard material-symbols-outlined"
+		onclick="favRecipe(${i}, recipes)"
+		>Favorite</i
+	>
+</div>
+`; cardContainer.appendChild(newCard); } }
